@@ -16,7 +16,6 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 import 'number_klotski_model.dart';
 export 'number_klotski_model.dart';
 
@@ -182,6 +181,7 @@ class _NumberKlotskiWidgetState extends State<NumberKlotskiWidget>
                                 ),
                                 Column(
                                   mainAxisSize: MainAxisSize.max,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
@@ -298,18 +298,16 @@ class _NumberKlotskiWidgetState extends State<NumberKlotskiWidget>
                                                         0.0, 0.0)
                                                     .resolve(Directionality.of(
                                                         context)),
-                                                child: WebViewAware(
-                                                  child: GestureDetector(
-                                                    onTap: () => _model
-                                                            .unfocusNode
-                                                            .canRequestFocus
-                                                        ? FocusScope.of(context)
-                                                            .requestFocus(_model
-                                                                .unfocusNode)
-                                                        : FocusScope.of(context)
-                                                            .unfocus(),
-                                                    child: DialogBoxWidget(),
-                                                  ),
+                                                child: GestureDetector(
+                                                  onTap: () => _model
+                                                          .unfocusNode
+                                                          .canRequestFocus
+                                                      ? FocusScope.of(context)
+                                                          .requestFocus(_model
+                                                              .unfocusNode)
+                                                      : FocusScope.of(context)
+                                                          .unfocus(),
+                                                  child: DialogBoxWidget(),
                                                 ),
                                               );
                                             },
@@ -326,6 +324,9 @@ class _NumberKlotskiWidgetState extends State<NumberKlotskiWidget>
                                         });
                                         setState(() {
                                           _model.isStarted = true;
+                                        });
+                                        setState(() {
+                                          _model.moves = 0;
                                         });
 
                                         setState(() {});
@@ -413,20 +414,17 @@ class _NumberKlotskiWidgetState extends State<NumberKlotskiWidget>
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      16.0, 0.0, 0.0, 0.0),
-                                  child: Text(
-                                    'Number Klotski',
-                                    textAlign: TextAlign.center,
-                                    style: FlutterFlowTheme.of(context)
-                                        .headlineSmall,
-                                  ),
+                                Text(
+                                  'Number Klotski',
+                                  textAlign: TextAlign.center,
+                                  style: FlutterFlowTheme.of(context)
+                                      .headlineSmall,
                                 ),
                                 Row(
                                   mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
                                       'Move:',
@@ -451,6 +449,10 @@ class _NumberKlotskiWidgetState extends State<NumberKlotskiWidget>
                                   ],
                                 ),
                                 Container(
+                                  constraints: BoxConstraints(
+                                    maxWidth: 720.0,
+                                    maxHeight: 720.0,
+                                  ),
                                   decoration: BoxDecoration(),
                                   child: Builder(
                                     builder: (context) {
@@ -514,21 +516,18 @@ class _NumberKlotskiWidgetState extends State<NumberKlotskiWidget>
                                                     context: context,
                                                     builder:
                                                         (alertDialogContext) {
-                                                      return WebViewAware(
-                                                        child: AlertDialog(
-                                                          title: Text('Solved'),
-                                                          content: Text(
-                                                              'you Did it!'),
-                                                          actions: [
-                                                            TextButton(
-                                                              onPressed: () =>
-                                                                  Navigator.pop(
-                                                                      alertDialogContext),
-                                                              child:
-                                                                  Text('Done'),
-                                                            ),
-                                                          ],
-                                                        ),
+                                                      return AlertDialog(
+                                                        title: Text('Solved'),
+                                                        content:
+                                                            Text('you Did it!'),
+                                                        actions: [
+                                                          TextButton(
+                                                            onPressed: () =>
+                                                                Navigator.pop(
+                                                                    alertDialogContext),
+                                                            child: Text('Done'),
+                                                          ),
+                                                        ],
                                                       );
                                                     },
                                                   );
@@ -565,7 +564,7 @@ class _NumberKlotskiWidgetState extends State<NumberKlotskiWidget>
                                                   width: 1.0,
                                                 ),
                                                 borderRadius:
-                                                    BorderRadius.circular(24.0),
+                                                    BorderRadius.circular(16.0),
                                               ),
                                             ),
                                           );
@@ -581,26 +580,29 @@ class _NumberKlotskiWidgetState extends State<NumberKlotskiWidget>
                                         FlutterFlowTheme.of(context).primary,
                                     borderRadius: 20.0,
                                     borderWidth: 1.0,
-                                    buttonSize: 50.0,
+                                    buttonSize: 46.0,
                                     fillColor:
                                         FlutterFlowTheme.of(context).accent1,
                                     icon: Icon(
                                       Icons.repeat,
                                       color: FlutterFlowTheme.of(context)
                                           .primaryText,
-                                      size: 32.0,
+                                      size: 24.0,
                                     ),
                                     onPressed: () async {
-                                      _model.shuffledNumListCopy =
+                                      _model.reshuffledList =
                                           await actions.shuffleBoard();
                                       setState(() {
                                         _model.boardNumbers = _model
-                                            .shuffledNumList!
+                                            .reshuffledList!
                                             .toList()
                                             .cast<int>();
                                       });
                                       setState(() {
                                         _model.isStarted = true;
+                                      });
+                                      setState(() {
+                                        _model.moves = 0;
                                       });
 
                                       setState(() {});

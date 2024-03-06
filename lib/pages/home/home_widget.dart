@@ -24,32 +24,6 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   final animationsMap = {
-    'containerOnPageLoadAnimation1': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 400.ms,
-          begin: 0.0,
-          end: 1.0,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 400.ms,
-          begin: Offset(0.0, 40.0),
-          end: Offset(0.0, 0.0),
-        ),
-        ScaleEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 400.ms,
-          begin: Offset(0.8, 0.8),
-          end: Offset(1.0, 1.0),
-        ),
-      ],
-    ),
     'textOnPageLoadAnimation': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
       effects: [
@@ -69,7 +43,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
         ),
       ],
     ),
-    'containerOnPageLoadAnimation2': AnimationInfo(
+    'containerOnPageLoadAnimation1': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
       effects: [
         FadeEffect(
@@ -88,7 +62,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
         ),
       ],
     ),
-    'containerOnPageLoadAnimation3': AnimationInfo(
+    'containerOnPageLoadAnimation2': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
       effects: [
         FadeEffect(
@@ -107,7 +81,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
         ),
       ],
     ),
-    'containerOnPageLoadAnimation4': AnimationInfo(
+    'containerOnPageLoadAnimation3': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
       effects: [
         FadeEffect(
@@ -192,111 +166,37 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                         ),
                       ],
                     ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
-                      child: Container(
-                        width: double.infinity,
-                        height: 230.0,
-                        decoration: BoxDecoration(
-                          color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
-                          image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: Image.network(
-                              'https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YmVhY2hlc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=900&q=60',
-                            ).image,
-                          ),
-                          boxShadow: [
-                            BoxShadow(
-                              blurRadius: 4.0,
-                              color: Color(0x250F1113),
-                              offset: Offset(0.0, 1.0),
-                            )
-                          ],
-                          borderRadius: BorderRadius.circular(12.0),
+                    Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              16.0, 12.0, 0.0, 12.0),
+                          child: Text(
+                            'Popular games',
+                            style: FlutterFlowTheme.of(context).labelLarge,
+                          ).animateOnPageLoad(
+                              animationsMap['textOnPageLoadAnimation']!),
                         ),
-                        child: Container(
-                          width: 100.0,
-                          height: 100.0,
-                          decoration: BoxDecoration(
-                            color: Color(0x430F1113),
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                          child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                12.0, 12.0, 12.0, 0.0),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 70.0, 0.0),
-                                  child: Text(
-                                    'Discover the most popular places in Bali',
-                                    style: FlutterFlowTheme.of(context)
-                                        .headlineMedium
-                                        .override(
-                                          fontFamily: 'Outfit',
-                                          color: Colors.white,
-                                        ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 16.0, 0.0, 0.0),
-                                  child: Text(
-                                    'Who is looking?',
-                                    style:
-                                        FlutterFlowTheme.of(context).titleSmall,
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 12.0, 0.0, 0.0),
-                                  child: FFButtonWidget(
-                                    onPressed: () {
-                                      print('Button pressed ...');
-                                    },
-                                    text: 'Play Randomly',
-                                    options: FFButtonOptions(
-                                      width: double.infinity,
-                                      height: 44.0,
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 0.0),
-                                      iconPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
-                                              0.0, 0.0, 0.0, 0.0),
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      textStyle: FlutterFlowTheme.of(context)
-                                          .titleSmall,
-                                      elevation: 2.0,
-                                      borderSide: BorderSide(
-                                        color: Colors.transparent,
-                                        width: 1.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(12.0),
-                                    ),
-                                  ),
-                                ),
-                              ],
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 16.0, 0.0),
+                          child: InkWell(
+                            splashColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () async {
+                              context.pushNamed('GameList');
+                            },
+                            child: Text(
+                              'See all',
+                              style: FlutterFlowTheme.of(context).bodyMedium,
                             ),
                           ),
                         ),
-                      ).animateOnPageLoad(
-                          animationsMap['containerOnPageLoadAnimation1']!),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 0.0, 0.0),
-                      child: Text(
-                        'Popular games',
-                        style: FlutterFlowTheme.of(context).labelLarge,
-                      ).animateOnPageLoad(
-                          animationsMap['textOnPageLoadAnimation']!),
+                      ],
                     ),
                     Padding(
                       padding:
@@ -423,7 +323,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                     ),
                                   ),
                                 ).animateOnPageLoad(animationsMap[
-                                    'containerOnPageLoadAnimation2']!),
+                                    'containerOnPageLoadAnimation1']!),
                               ),
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
@@ -537,7 +437,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                     ),
                                   ),
                                 ).animateOnPageLoad(animationsMap[
-                                    'containerOnPageLoadAnimation3']!),
+                                    'containerOnPageLoadAnimation2']!),
                               ),
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
@@ -653,7 +553,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                     ),
                                   ),
                                 ).animateOnPageLoad(animationsMap[
-                                    'containerOnPageLoadAnimation4']!),
+                                    'containerOnPageLoadAnimation3']!),
                               ),
                             ],
                           ),

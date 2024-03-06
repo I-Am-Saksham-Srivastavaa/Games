@@ -17,7 +17,6 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 
 class NumberKlotskiModel extends FlutterFlowModel<NumberKlotskiWidget> {
   ///  Local state fields for this page.
@@ -56,7 +55,7 @@ class NumberKlotskiModel extends FlutterFlowModel<NumberKlotskiWidget> {
   // Stores action output result for [Custom Action - isSolved] action in Button widget.
   bool? isSolved;
   // Stores action output result for [Custom Action - shuffleBoard] action in IconButton widget.
-  List<int>? shuffledNumListCopy;
+  List<int>? reshuffledList;
   // Model for NavBar component.
   late NavBarModel navBarModel;
 

@@ -17,7 +17,6 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 import 'sudoku_model.dart';
 export 'sudoku_model.dart';
 
@@ -187,6 +186,8 @@ class _SudokuWidgetState extends State<SudokuWidget>
                                   ),
                                   Column(
                                     mainAxisSize: MainAxisSize.max,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
@@ -309,20 +310,16 @@ class _SudokuWidgetState extends State<SudokuWidget>
                                                           .resolve(
                                                               Directionality.of(
                                                                   context)),
-                                                  child: WebViewAware(
-                                                    child: GestureDetector(
-                                                      onTap: () => _model
-                                                              .unfocusNode
-                                                              .canRequestFocus
-                                                          ? FocusScope.of(
-                                                                  context)
-                                                              .requestFocus(_model
-                                                                  .unfocusNode)
-                                                          : FocusScope.of(
-                                                                  context)
-                                                              .unfocus(),
-                                                      child: DialogBoxWidget(),
-                                                    ),
+                                                  child: GestureDetector(
+                                                    onTap: () => _model
+                                                            .unfocusNode
+                                                            .canRequestFocus
+                                                        ? FocusScope.of(context)
+                                                            .requestFocus(_model
+                                                                .unfocusNode)
+                                                        : FocusScope.of(context)
+                                                            .unfocus(),
+                                                    child: DialogBoxWidget(),
                                                   ),
                                                 );
                                               },

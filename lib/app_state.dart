@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'flutter_flow/flutter_flow_util.dart';
+import 'dart:convert';
 
 class FFAppState extends ChangeNotifier {
   static FFAppState _instance = FFAppState._internal();
@@ -23,6 +24,15 @@ class FFAppState extends ChangeNotifier {
     _safeInit(() {
       _isMusicEnabled = prefs.getBool('ff_isMusicEnabled') ?? _isMusicEnabled;
     });
+    _safeInit(() {
+      if (prefs.containsKey('ff_audioRef')) {
+        try {
+          _audioRef = jsonDecode(prefs.getString('ff_audioRef') ?? '');
+        } catch (e) {
+          print("Can't decode persisted json. Error: $e.");
+        }
+      }
+    });
   }
 
   void update(VoidCallback callback) {
@@ -44,6 +54,19 @@ class FFAppState extends ChangeNotifier {
   set isMusicEnabled(bool _value) {
     _isMusicEnabled = _value;
     prefs.setBool('ff_isMusicEnabled', _value);
+  }
+
+  bool _isFavourite = false;
+  bool get isFavourite => _isFavourite;
+  set isFavourite(bool _value) {
+    _isFavourite = _value;
+  }
+
+  dynamic _audioRef;
+  dynamic get audioRef => _audioRef;
+  set audioRef(dynamic _value) {
+    _audioRef = _value;
+    prefs.setString('ff_audioRef', jsonEncode(_value));
   }
 }
 

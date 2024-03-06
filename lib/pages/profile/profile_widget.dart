@@ -237,7 +237,8 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
-                          context.pushNamed('ViewCode');
+                          await launchURL(
+                              'https://github.com/I-Am-Saksham-Srivastavaa/Games');
                         },
                         child: Container(
                           width: double.infinity,
@@ -525,43 +526,6 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                 ),
                               ],
                             ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Align(
-                      alignment: AlignmentDirectional(0.0, -1.0),
-                      child: Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
-                        child: FFButtonWidget(
-                          onPressed: () {
-                            print('Button pressed ...');
-                          },
-                          text: 'Log Out',
-                          options: FFButtonOptions(
-                            width: 130.0,
-                            height: 50.0,
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                            textStyle: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .override(
-                                  fontFamily: 'Plus Jakarta Sans',
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryText,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                            elevation: 0.0,
-                            borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).alternate,
-                              width: 2.0,
-                            ),
-                            borderRadius: BorderRadius.circular(12.0),
                           ),
                         ),
                       ),

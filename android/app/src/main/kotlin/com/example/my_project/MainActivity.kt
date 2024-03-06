@@ -1,4 +1,4 @@
-package com.mycompany.miniproject2ndyear
+package tech.ambalika.secondyear
 
 import io.flutter.embedding.android.FlutterActivity
 

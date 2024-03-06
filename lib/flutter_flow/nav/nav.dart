@@ -36,12 +36,37 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       initialLocation: '/',
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
-      errorBuilder: (context, state) => HomeWidget(),
+      errorBuilder: (context, state) => appStateNotifier.showSplashImage
+          ? Builder(
+              builder: (context) => isWeb
+                  ? Container()
+                  : Container(
+                      color: FlutterFlowTheme.of(context).secondaryBackground,
+                      child: Image.asset(
+                        'assets/images/Social_Share_Image.png',
+                        fit: BoxFit.fitWidth,
+                      ),
+                    ),
+            )
+          : HomeWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) => HomeWidget(),
+          builder: (context, _) => appStateNotifier.showSplashImage
+              ? Builder(
+                  builder: (context) => isWeb
+                      ? Container()
+                      : Container(
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                          child: Image.asset(
+                            'assets/images/Social_Share_Image.png',
+                            fit: BoxFit.fitWidth,
+                          ),
+                        ),
+                )
+              : HomeWidget(),
         ),
         FFRoute(
           name: 'Profile',
@@ -72,11 +97,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'Favourites',
           path: '/favourites',
           builder: (context, params) => FavouritesWidget(),
-        ),
-        FFRoute(
-          name: 'ViewCode',
-          path: '/viewCode',
-          builder: (context, params) => ViewCodeWidget(),
         ),
         FFRoute(
           name: 'Leaderboard',
